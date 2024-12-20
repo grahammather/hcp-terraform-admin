@@ -2,7 +2,7 @@
 
 import {
   id = "craigsloggett-lab" # Organizations can only be imported by name.
-  to = tfe_organization.craigsloggett_lab
+  to = tfe_organization.this
 }
 
 import {

@@ -22,6 +22,7 @@ The following steps must be taken before being able to run the code in this repo
 6. Populate the variable set with the `TFE_TOKEN` environment variable, using the API token as the (sensitive) value.
 7. Assign the variable set to the new workspace.
 8. Update `imports.tf` with the ID of the resources in your HCP Terraform organization.
+9. Update `locals.tf` with the ID of the resources in your HCP Terraform organization.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -45,20 +46,21 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [tfe_organization.craigsloggett_lab](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/organization) | resource |
+| [tfe_organization.this](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/organization) | resource |
 | [tfe_project.default](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/project) | resource |
 | [tfe_project.platform_team](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/project) | resource |
-| [tfe_project_variable_set.tfe_provider_authentication](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/project_variable_set) | resource |
 | [tfe_team.admins](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/team) | resource |
 | [tfe_team_organization_members.admins](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/team_organization_members) | resource |
 | [tfe_team_organization_members.owners](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/team_organization_members) | resource |
+| [tfe_team_project_access.admins](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/team_project_access) | resource |
 | [tfe_variable_set.tfe_provider_authentication](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/variable_set) | resource |
 | [tfe_workspace.hcp_terraform_admin](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/workspace) | resource |
+| [tfe_workspace_variable_set.tfe_provider_authentication](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/resources/workspace_variable_set) | resource |
 | [tfe_organization_membership.api_org](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/data-sources/organization_membership) | data source |
 | [tfe_organization_membership.api_team](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/data-sources/organization_membership) | data source |
-| [tfe_organization_membership.craigsloggett](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/data-sources/organization_membership) | data source |
 | [tfe_organization_membership.doormat](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/data-sources/organization_membership) | data source |
 | [tfe_organization_membership.gh_webhooks](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/data-sources/organization_membership) | data source |
+| [tfe_organization_membership.owner](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/data-sources/organization_membership) | data source |
 | [tfe_team.owners](https://registry.terraform.io/providers/hashicorp/tfe/0.62.0/docs/data-sources/team) | data source |
 
 ## Inputs
