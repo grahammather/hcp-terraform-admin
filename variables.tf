@@ -1,13 +1,11 @@
 variable "hcp_terraform_organization_name" {
   type        = string
   description = "The name of the HCP Terraform organization being managed."
-  default     = "craigsloggett-lab"
 }
 
 variable "hcp_terraform_organization_email" {
   type        = string
   description = "The notification email address for the HCP Terraform organization being managed."
-  default     = "craig.sloggett@hashicorp.com"
 }
 
 variable "hcp_terraform_admin_workspace_name" {
