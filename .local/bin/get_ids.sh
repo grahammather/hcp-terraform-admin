@@ -1,7 +1,10 @@
 #!/bin/sh
 
-tf_token="<HCP_TERRAFORM_API_TOKEN>"
-organization_name="<HCP_TERRAFORM_ORGANIZATION_NAME>"
+set -eu
+
+# Required Variables
+tf_token="${TF_TOKEN:?}"
+organization_name="${TF_ORG_NAME:?}"
 
 # The owners team ID is used in the organization membership ID query, so
 # we assign it to a variable.
