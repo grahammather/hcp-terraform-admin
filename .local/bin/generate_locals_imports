@@ -32,6 +32,56 @@ set -- --silent --header "Authorization: Bearer ${tf_token}" --header "Content-T
 # Clear the `locals_imports.tf` file.
 : >"${locals_imports_path}"
 
+# The rest of this script will generate a `locals` block by querying the
+# HCP Terraform API for the relevant ID using the `TF_TOKEN_app_terraform_io`
+# environment variable to authenticate.
+#
+# The general flow is:
+# - Use `printf` to populate the HCL surrounding the IDs to query.
+# - Use `curl` to query the relevant API endpoint.
+# - Use `jq` to filter for the relevant resources / IDs.
+# - Use a `while read -r variable_name; do` loop to iterate over
+#   queries that require nested `curl` commands to get the necessary
+#   IDs.
+# - Use `printf` to populate the HCL block with the results from the
+#   queries and filters.
+#
+# The generated file will resemble the following structure, with the appropriate
+# IDs populated based on the HCP Terraform organization being managed:
+#
+# # This file is generated automatically using: `.local/bin/generate_locals_imports`.
+# locals {
+#   imports = {
+#     team_ids = {
+#       owners = "team-p9ryLNrpQ9TNmEFh"
+#     }
+#     organization_membership_ids = {
+#       owners = {
+#         "craig.sloggett@hashicorp.com"                           = "ou-tSVPjvXHB4iTqcPb"
+#         "doormat@hashicorp.com"                                  = "ou-9KRr8gq4h6JikktE"
+#         "api-org-craigsloggett-lab-xqsus22ynh@hashicorp.com"     = "ou-EhS6WkPBDVPxYYqd"
+#         "api-team_1202828@hashicorp.com"                         = "ou-mLy6EZTkP2bKW9w3"
+#         "gh-webhooks-craigsloggett-lab-db12onjulf@hashicorp.com" = "ou-j7QUTL6CcJUktJJC"
+#       }
+#     }
+#     project_ids = {
+#       "Default Project" = "prj-1ifijXyay7xeH9Zc"
+#       "Platform Team"   = "prj-qW7NitPW1R49WN4b"
+#     }
+#     variable_set_ids = {
+#       "TFE Provider Authentication" = "varset-FwFGK65suTr7eaAA"
+#       "HCP Provider Authentication" = "varset-STBAvPjd212TqpgM"
+#     }
+#     workspace_ids = {
+#       hcp-terraform-admin = "ws-aAUcuGF6QEJKuQyL"
+#     }
+#   }
+# }
+#
+# Finally, `terraform fmt` is used to automatically format the output, ensuring
+# consistent spacing and alignment. This allows us to focus on generating the
+# content without manually adjusting spacing in the `printf` commands.
+
 {
   # shellcheck disable=SC2016
   printf '# This file is generated automatically using: `.local/bin/generate_locals_imports`.\n'
