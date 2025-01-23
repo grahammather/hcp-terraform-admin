@@ -1,3 +1,4 @@
+# This file is generated automatically using `.local/bin/generate_locals_imports`.
 locals {
   imports = {
     team_ids = {

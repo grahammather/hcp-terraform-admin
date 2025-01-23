@@ -29,6 +29,8 @@ organization_name="$(grep '^hcp_terraform_organization_name' "${tfvars_path}" | 
 : >"${locals_imports_path}"
 
 {
+  # shellcheck disable=SC2016
+  printf '# This file is generated automatically using: `.local/bin/generate_locals_imports`.\n'
   printf '%s\n' "locals {"
   printf '%s\n' "imports = {"
 } >>"${locals_imports_path}"
