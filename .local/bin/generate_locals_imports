@@ -1,9 +1,29 @@
 #!/bin/sh
+#
+# generate_locals_imports - Automatically generate `locals` to be used to import Terraform resources.
+#
+# This script queries the HCP Terraform API to retrieve various
+# organization-specific IDs and generates a Terraform `locals` block
+# containing these values. The `locals` block is output to a file in the root
+# of this repository named `locals_imports.tf` so it can be used to import
+# resources.
+#
+# Usage:
+# Ensure `TF_TOKEN_app_terraform_io` is set before running:
+# $ export TF_TOKEN_app_terraform_io="your-token-here"
+#
+# Then execute the script from the root of this repository:
+# $ .local/bin/generate_locals_imports
+#
+# Dependencies:
+#   - jq (for JSON parsing)
+#   - terraform (for formatting output)
+#   - curl (for querying the API)
 
 set -eu
 
 # Check if the required utilities are installed.
-for utility in jq terraform; do
+for utility in jq terraform curl; do
   command -v "${utility}" >/dev/null || {
     printf '%s\n' "Error: ${utility} is not installed." >&2
     exit 1
