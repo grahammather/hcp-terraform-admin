@@ -19,6 +19,7 @@ resource "tfe_variable" "tfe_license" {
   key          = "tfe_license"
   value        = var.tfe_license
   category     = "terraform"
+  sensitive    = true
   workspace_id = tfe_workspace.aws_tfe_fdo_docker_active_active_module.id
   description  = "The license for Terraform Enterprise."
 }
