@@ -50,4 +50,5 @@ resource "tfe_test_variable" "tfe_license" {
   key         = "TF_VAR_tfe_license"
   description = "The TFE license used to test the terraform-aws-tfe-fdo-docker-active-active module."
   category    = "env"
+  sensitive   = true
 }
