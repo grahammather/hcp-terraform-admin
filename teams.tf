@@ -42,11 +42,6 @@ resource "tfe_team_project_access" "default" {
   project_id = tfe_project.default.id
 }
 
-moved {
-  from = tfe_team_project_access.admins
-  to   = tfe_team_project_access.backend
-}
-
 # Provide admin access to the project configured in `backend.tf`.
 resource "tfe_team_project_access" "backend" {
   access     = "admin"
