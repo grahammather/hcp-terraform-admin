@@ -37,11 +37,6 @@ resource "tfe_registry_module" "terraform_aws_tfe_fdo_docker_active_active" {
   }
 }
 
-import {
-  id = "craigsloggett-lab/private/craigsloggett-lab/tfe-fdo-docker-active-active/aws/mod-t6uoffWBYU9gi7az"
-  to = tfe_registry_module.terraform_aws_tfe_fdo_docker_active_active
-}
-
 resource "tfe_test_variable" "tfe_license" {
   organization    = tfe_organization.this.name
   module_name     = tfe_registry_module.terraform_aws_tfe_fdo_docker_active_active.name
