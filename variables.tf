@@ -72,14 +72,3 @@ variable "aws_provider_authentication_variable_set_name" {
   default     = "AWS Provider Authentication"
 }
 
-# Lab Infrastructure
-
-variable "vps_relay_workspace_name" {
-  type        = string
-  description = "The name of the workspace used to manage the lab infrastructure."
-}
-
-variable "vps_relay_vcs_repository_name" {
-  type        = string
-  description = "The name of the GitHub repository backing the vps relay workspace."
-}
